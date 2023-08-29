@@ -18,8 +18,21 @@ public class MemberService {
 		return dao.registerMember(vo);
 	}
 	
-	private Member login(Member vo) {
+	public Member login(Member vo) {
 		return dao.login(vo);
 	}
+	
+	public List<Member> allShowMember() {
+		return dao.allShowMember();
+	}
+	
+	public List<Member> findMember(String keyword) {
+		return dao.findMember(keyword);
+	}
+	
+	public int updateMember(Member vo) {
+		return dao.updateMember(vo);
+	}
+
 	
 }

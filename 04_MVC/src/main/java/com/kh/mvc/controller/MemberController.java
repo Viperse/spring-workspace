@@ -1,5 +1,7 @@
 package com.kh.mvc.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +32,12 @@ public class MemberController {
 		// 서비스 - 비즈니스 로직 처리!
 		// --> list 값! 데이터 바인딩 -> Model
 		// model.addAttribute("list", list)
+		List<Member> list = service.findMember(keyword);
+		model.addAttribute(list);
+		
+		if(list == null) {
+			return "find_fail";
+		}
 		return "find_ok"; // "find_fail"
 	}
 	
@@ -63,10 +71,37 @@ public class MemberController {
 	
 	// allMember - 비즈니스 로직 포함, 데이터바인딩 - Model
 	// return "find_ok";
+	@RequestMapping("allMember")
+	public String allMember(Model model) {
+		List<Member> list = service.allShowMember();
+		model.addAttribute(list);
+		return "find_ok";
+	}
 	
 	// logout - 로그아웃 기능!
 	
 	// update - 페이지 이동
+	@RequestMapping("update")
+	public String update() {
+		return "update";
+	}
 	
 	// updateMember - 비즈니스 로직 포함 -> 파라미터 request 필요
+	@RequestMapping("updateMember")
+	public String updateMember(HttpServletRequest request, Member member) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("vo")!= null) {
+			service.updateMember(member);
+			session.setAttribute("vo2", member);
+		}
+		return "update_result";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("vo") != null) {
+			session.invalidate();
+		} return "logout";
+	}
 }

@@ -28,4 +28,16 @@ public class MemberDAO {
 	public Member login(Member vo) {
 		return sqlSession.selectOne("memberMapper.login", vo);
 	}
+	
+	public List<Member> allShowMember() {
+		return sqlSession.selectList("memberMapper.allShowMember");
+	}
+	
+	public List<Member> findMember(String keyword) {
+		return sqlSession.selectList("memberMapper.findByMember", keyword);
+	}
+	
+	public int updateMember(Member vo) {
+		return sqlSession.update("memberMapper.updateMember", vo);
+	}
 }
