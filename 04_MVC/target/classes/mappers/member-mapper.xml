@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+	<resultMap type="Member" id="memberMap">
+		<id property="id" column="id" />
+		<result property="pwd" column="password"/>
+		<result property="name" column="name" />
+		<result property="addr" column="address"/>	
+	</resultMap>
+	
+	<insert id="registerMember" parameterType="Member">
+		INSERT INTO MEMBER 
+		VALUES(#{id}, #{pwd}, #{name}, #{addr})
+	</insert>
+	
+	<select id="login" parameterType="Member" resultMap="memberMap">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id} AND PASSWORD = #{pwd}
+	</select>
+	
+	<select id="allShowMember" resultMap="memberMap">
+		SELECT id, pwd, name, addr
+		FROM MEMBER
+	</select>
+	
+	<select id="findByMember" parameterType="String" resultMap="memberMap">
+		SELECT *
+		FROM MEMBER
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null">
+				ID LIKE '%'||#{keyword}||'%'
+				OR NAME LIKE '%'||#{keyword}||'%'
+				OR ADDRESS LIKE '%'||#{keyword}||'%'
+			</if>
+		</trim>
+	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET	ID = #{id}, PASSWORD = #{pwd}, NAME = #{name}, ADDRESS = #{addr}
+		WHERE #{id}
+	</update>
+
+</mapper>
