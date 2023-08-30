@@ -13,5 +13,7 @@
 		<li>이름 : ${vo2.name}</li>
 		<li>주소 : ${vo2.addr}</li>	
 	</ul>
+	
+	<a href="/index.jsp">메인 페이지로 가기</a>
 </body>
 </html>

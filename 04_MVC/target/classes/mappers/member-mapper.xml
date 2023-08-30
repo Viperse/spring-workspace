@@ -15,13 +15,13 @@
 	</insert>
 	
 	<select id="login" parameterType="Member" resultMap="memberMap">
-		SELECT *
+		SELECT id, password, name, address
 		FROM MEMBER
 		WHERE ID = #{id} AND PASSWORD = #{pwd}
 	</select>
 	
 	<select id="allShowMember" resultMap="memberMap">
-		SELECT id, pwd, name, addr
+		SELECT id, password, name, address
 		FROM MEMBER
 	</select>
 	
@@ -40,7 +40,7 @@
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
 		SET	ID = #{id}, PASSWORD = #{pwd}, NAME = #{name}, ADDRESS = #{addr}
-		WHERE #{id}
+		WHERE ID = #{id}
 	</update>
 
 </mapper>

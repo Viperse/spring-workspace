@@ -117,6 +117,8 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- 여기서부터 jdbc랑 mybatis -->
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>

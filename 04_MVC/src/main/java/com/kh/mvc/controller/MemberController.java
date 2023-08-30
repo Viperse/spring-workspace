@@ -27,15 +27,14 @@ public class MemberController {
 	
 	@RequestMapping("find")
 	public String find(String keyword, Model model) {
-		System.out.println(keyword);
 		
 		// 서비스 - 비즈니스 로직 처리!
 		// --> list 값! 데이터 바인딩 -> Model
 		// model.addAttribute("list", list)
 		List<Member> list = service.findMember(keyword);
-		model.addAttribute(list);
+		model.addAttribute("list", list);
 		
-		if(list == null) {
+		if(list.size() <= 0) {
 			return "find_fail";
 		}
 		return "find_ok"; // "find_fail"
@@ -62,10 +61,14 @@ public class MemberController {
 	// signIn 비즈니스 로직 포함 : 파라미터 값 -> HttpServletRequest request
 	//   -> return "login_result"
 	@RequestMapping("signIn")
-	public String signIn(HttpServletRequest request, Member member) {
-		service.registerMember(member);
-		HttpSession session = request.getSession();
-		session.setAttribute("vo", member);
+	public String signIn(HttpSession session, Member member) {
+		Member member2 = (Member) service.login(member);
+		if(member2 != null) {
+			session.setAttribute("vo", member2);
+		} else {
+			return "redirect:/";
+		}
+		
 		return "login_result";
 	}
 	
@@ -74,11 +77,9 @@ public class MemberController {
 	@RequestMapping("allMember")
 	public String allMember(Model model) {
 		List<Member> list = service.allShowMember();
-		model.addAttribute(list);
+		model.addAttribute("list", list);
 		return "find_ok";
 	}
-	
-	// logout - 로그아웃 기능!
 	
 	// update - 페이지 이동
 	@RequestMapping("update")
@@ -97,9 +98,9 @@ public class MemberController {
 		return "update_result";
 	}
 	
+	// logout - 로그아웃 기능!
 	@RequestMapping("logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String logout(HttpSession session) {
 		if(session.getAttribute("vo") != null) {
 			session.invalidate();
 		} return "logout";
