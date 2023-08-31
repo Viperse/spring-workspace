@@ -9,7 +9,19 @@
 	</insert>
 	
 	<select id="selectAll" resultType="Board">
-		SELECT no, title, content, writer, regdate
+		<![CDATA[
+		SELECT NUM, NO, TITLE, WRITER, REGDATE
+		FROM (SELECT /*+ INDEX_DESC(BOARD PK_BOARD) */
+    		ROWNUM NUM, NO, TITLE, WRITER, REGDATE
+    		FROM BOARD
+    		WHERE ROWNUM <= #{page} * #{amount}
+    		)
+		WHERE NUM > (#{page} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
 		FROM BOARD
 	</select>
 	
@@ -21,7 +33,7 @@
 	
 	<update id="update" parameterType="Board">
 		UPDATE BOARD
-		SET title = #{title}, content = #{content}, writer = #{writer}, regdate = SYSDATE
+		SET title = #{title}, content = #{content}
 		WHERE no = #{no}
 	</update>
 	
