@@ -23,7 +23,7 @@
 <body>
 	<div class="container">
         <h1>게시글 등록</h1>
-        <form action="/board/insert" method="post">
+        <form action="/board/insert" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">title</label>
                 <input type="text" name="title" id="title" class="form-control">
@@ -31,6 +31,10 @@
             <div class="form-group">
                 <label for="content">Content</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control" style="resize: none;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="uploadFile">Add File</label>
+                <input type="file" id="uploadFile" name="uploadFile" class="form-control" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="writer">Writer</label>

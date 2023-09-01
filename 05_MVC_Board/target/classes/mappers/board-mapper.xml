@@ -4,8 +4,8 @@
 	
 	<!-- useGeneratedKeys="true" keyProperty="no" keyColumn="no" 를 사용하면 요소를 바로 가져올 수 있다 -->
 	<insert id="insert" parameterType="Board" useGeneratedKeys="true" keyProperty="no" keyColumn="no">
-		INSERT INTO BOARD(no, title, content, writer)
-		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+		INSERT INTO BOARD(no, title, content, writer, url)
+		VALUES(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer}, #{url})
 	</insert>
 	
 	<select id="selectAll" resultType="Board">
@@ -33,7 +33,7 @@
 	
 	<update id="update" parameterType="Board">
 		UPDATE BOARD
-		SET title = #{title}, content = #{content}
+		SET title = #{title}, content = #{content}, url = #{url}
 		WHERE no = #{no}
 	</update>
 	
