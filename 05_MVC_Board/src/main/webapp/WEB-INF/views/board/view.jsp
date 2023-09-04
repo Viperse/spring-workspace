@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html data-bs-theme="dark">
 <head>
@@ -40,8 +42,13 @@
                 <label for="writer">Writer</label>
                 <input type="text" readonly value="${vo.writer}" id="writer" name="writer" class="form-control">
             </div>
-            <a class="btn btn-outline-warning" href="/board/update?no=${vo.no}">수정</a>
-            <a class="btn btn-outline-danger" href="/board/delete?no=${vo.no}">삭제</a>
+            
+             <!-- 로그인한 정보를 가지고 올 수 있는 인증 태그-->
+            <sec:authentication property="principal" var="info"/>
+            <c:if test="${info.username eq vo.writer}">
+            	<a class="btn btn-outline-warning" href="/board/update?no=${vo.no}">수정</a>
+            	<a class="btn btn-outline-danger" href="/board/delete?no=${vo.no}">삭제</a>
+            </c:if> 
         </form>
     </div>
 </body>

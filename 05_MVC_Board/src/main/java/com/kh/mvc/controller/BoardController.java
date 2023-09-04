@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.mvc.model.service.BoardService;
 import com.kh.mvc.model.vo.Board;
 import com.kh.mvc.model.vo.Criteria;
+import com.kh.mvc.model.vo.Member;
 import com.kh.mvc.model.vo.Paging;
 
 @Controller
@@ -123,4 +124,5 @@ public class BoardController {
 		map.put("path", path);
 		return new ModelAndView("downloadView", map);
 	}
+	
 }
