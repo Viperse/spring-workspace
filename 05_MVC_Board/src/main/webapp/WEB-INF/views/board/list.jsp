@@ -16,11 +16,12 @@
 <style>
 	h1 {
 		margin-top: 70px;
+		text-align: center;
 	}
 
 	.header {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: flex-end;
 	}
 
@@ -32,8 +33,9 @@
 </head>
 <body>
 	<div class="container">
+		<h1>List Page</h1>
 		<div class="header">
-			<h1>List Page</h1>
+			<a href="/member/logout" class="btn btn-outline-primary">로그아웃</a>
 			<a href="/board/insert" class="btn btn-outline-warning">게시글 등록</a>
 		</div>
 		<table class="table">

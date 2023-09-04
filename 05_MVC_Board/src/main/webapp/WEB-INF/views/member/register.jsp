@@ -6,18 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
-	body {
+    body {
         padding: 20px;
     }
-    
+
     h1 {
         text-align: center;
-    }
-
-    .container {
-        display: flex;
-        justify-content: center;
     }
 </style>
 <link
@@ -28,16 +22,18 @@
 />
 </head>
 <body>
-    <h1>로그인</h1>
     <div class="container">
-        <form action="/board/list" method="post">
-        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <h1>회원가입</h1>
+        <form action="/member/register" method="post">
             <label for="username">아이디 : </label>
             <input type="text" name="username" id="username" class="form-control"><br>
             <label for="password">비밀번호 : </label>
             <input type="password" name="password" id="password" class="form-control"><br>
-            <button type="submit" class="btn btn-primary">로그인</button>
-            <a href="/member/register" class="btn btn-primary">회원가입</a>
+            <label for="name">이름 : </label>
+            <input type="text" name="name" id="name" class="form-control"><br>
+            <label for="address">주소 : </label>
+            <input type="text" name="address" id="address" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">회원가입</button>
         </form>
     </div>
 </body>
