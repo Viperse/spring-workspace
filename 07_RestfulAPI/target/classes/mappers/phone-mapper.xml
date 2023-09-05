@@ -4,7 +4,7 @@
 	
 	<insert id="insert" parameterType="Phone">
 		insert into Phone
-		values(#{num}, #{model}, #{price}, #{vode}) 
+		values(#{num}, #{model}, #{price}, #{vcode}) 
 	</insert>
 	
 	<!-- Dynamic Query : selectAll + selectOne (num) -->

@@ -32,7 +32,10 @@ public class PhoneController {
 	@GetMapping("/phone/{num}")
 	public ResponseEntity select(@PathVariable String num) {
 		Phone phone = service.select(num);
-		return new ResponseEntity(phone, HttpStatus.NO_CONTENT); // 컨텐츠가 없을 때
+		if(phone != null) {
+			return new ResponseEntity("컨텐츠가 없습니다.", HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity(phone, HttpStatus.OK); // 컨텐츠가 없을 때
 	}
 	
 	@PostMapping("/phone")
