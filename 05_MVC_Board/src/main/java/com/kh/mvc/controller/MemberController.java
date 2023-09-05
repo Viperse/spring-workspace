@@ -25,23 +25,15 @@ public class MemberController {
 	@GetMapping("/login")
 	public void login() {}
 	
-	@PostMapping("/login")
-	public String login(Member vo, Model model, Authentication auth) {
-		Member member = service.login(vo);
-		Member member2 = (Member)auth.getAuthorities();
-		model.addAttribute("info", member2);
-		return "redirect:/";
-	}
-	
-	@GetMapping("/regster")
+	@GetMapping("/register")
 	public void register() {}
 	
-	@PostMapping("/register")
+	@PostMapping("/insert")
 	public String register(Member vo) {
 		String encodePassword = bcpe.encode(vo.getPassword());
 		vo.setPassword(encodePassword);
 		service.registerMember(vo);
-		return "redirect:/login";
+		return "redirect:/member/login";
 	}
 	
 	@GetMapping("/logout")

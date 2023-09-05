@@ -8,17 +8,24 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<bean id="loginSuccess" class="com.kh.mvc.LoginSuccessHandler" />
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
+	<context:component-scan base-package="com.kh.mvc" />
+	<bean id="memberService" class="com.kh.mvc.model.service.MemberService" />
 	
 	<security:http>
 		<security:intercept-url pattern="/board/list" access="permitAll"/>
 		<security:intercept-url pattern="/board/insert" access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/board/update" access="hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')"/>
 		<security:form-login login-page="/member/login" authentication-success-handler-ref="loginSuccess"/>
 		
+		  
 		<security:csrf disabled="true"/>
-		<security:logout logout-url="/member/logout" invalidate-session="true"/>
+		<security:logout logout-url="/member/logout" invalidate-session="true"/>		
 		
 		<security:access-denied-handler error-page="/error"/>
 	</security:http>
+	
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="memberService">
 			<security:password-encoder hash="bcrypt"/>

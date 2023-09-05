@@ -7,8 +7,13 @@
 	</settings>
 	
 	<typeAliases>
+		<!--
 		<typeAlias type="com.kh.mvc.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.mvc.model.vo.Member" alias="Member"/>
+		-->
+		
+		<!-- 패키지를 통으로 등록해 두면 패키지 안에 있는 클래스들을 모두 참조할 수 있다 별칭은 패키지명이 된다. -->
+		<package name="com.kh.mvc.model.vo"/>
 	</typeAliases>
 	
 	<!-- 단위 테스트를 위해서 추가 -->

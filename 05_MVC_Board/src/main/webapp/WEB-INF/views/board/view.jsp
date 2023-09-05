@@ -29,8 +29,8 @@
         <form>
             <div class="form-group">
                 <label for="title">title</label>
-                <!-- <input type="text" name="title" id="title" class="form-control" readonly value="${vo.title}"> -->
-                <a href="${vo.url}" download><img src="${vo.url}"/></a>
+                
+                <!-- <a href="${vo.url}" download><img src="${vo.url}"/></a> -->
                 <input type="text" name="title" id="title" class="form-control" readonly value="${vo.title}">
             </div>
             <div class="form-group">
@@ -43,12 +43,22 @@
                 <input type="text" readonly value="${vo.writer}" id="writer" name="writer" class="form-control">
             </div>
             
+            <!-- principal : 계정 정보를 가지고 있음!
+            		만약에 로그인된 정보가 없으면 anonymousUser(문자열)가 들어감 
+            		
+            		* authorize : 권한부여와 관련된 것
+            		* authentication : 인증과 관련된 것, 계정 정보 -->
+            
              <!-- 로그인한 정보를 가지고 올 수 있는 인증 태그-->
-            <sec:authentication property="principal" var="info"/>
-            <c:if test="${info.username eq vo.writer}">
-            	<a class="btn btn-outline-warning" href="/board/update?no=${vo.no}">수정</a>
-            	<a class="btn btn-outline-danger" href="/board/delete?no=${vo.no}">삭제</a>
-            </c:if> 
+             <sec:authorize access="hasRole('ROLE_MEMBER')">
+            	<sec:authentication property="principal" var="info"/>
+            	<c:if test="${info.name eq vo.writer}">
+            		<a class="btn btn-outline-warning" href="/board/update?no=${vo.no}">수정</a>
+            		<a class="btn btn-outline-danger" href="/board/delete?no=${vo.no}">삭제</a>
+            	</c:if>
+            </sec:authorize>
+            
+            
         </form>
     </div>
 </body>

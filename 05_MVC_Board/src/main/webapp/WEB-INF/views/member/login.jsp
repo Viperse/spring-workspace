@@ -30,7 +30,7 @@
 <body>
     <h1>로그인</h1>
     <div class="container">
-        <form action="/board/list" method="post">
+        <form action="/login" method="post">
         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <label for="username">아이디 : </label>
             <input type="text" name="username" id="username" class="form-control"><br>

@@ -24,9 +24,9 @@
 <body>
     <div class="container">
         <h1>회원가입</h1>
-        <form action="/member/register" method="post">
-            <label for="username">아이디 : </label>
-            <input type="text" name="username" id="username" class="form-control"><br>
+        <form action="/member/insert" method="post">
+            <label for="id">아이디 : </label>
+            <input type="text" name="id" id="id" class="form-control"><br>
             <label for="password">비밀번호 : </label>
             <input type="password" name="password" id="password" class="form-control"><br>
             <label for="name">이름 : </label>

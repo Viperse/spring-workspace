@@ -16,7 +16,7 @@ public class MemberDAO {
 		return session.insert("memberMapper.registerMember", vo);
 	}
 	
-	public Member login(Member vo) {
-		return session.selectOne("memberMapper.login", vo);
+	public Member getMemberById(String id) {
+		return session.selectOne("memberMapper.getMemberById", id);
 	}
 }
