@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.api.dao.PhoneDAOImpl;
+import com.kh.api.dao.phoneDAO;
 import com.kh.api.model.Phone;
 import com.kh.api.model.UserInfo;
 
@@ -13,7 +13,7 @@ import com.kh.api.model.UserInfo;
 public class PhoneServiceImpl implements PhoneService{
 	
 	@Autowired
-	private PhoneDAOImpl dao;
+	private phoneDAO dao;
 	
 	@Override
 	public int insert(Phone phone) {
